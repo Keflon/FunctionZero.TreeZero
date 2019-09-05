@@ -14,7 +14,7 @@ namespace FunctionZero.TreeZero.Exceptions
     }
     public class TreeZeroException : Exception
     {
-        public TreeZeroException(object node, ExceptionReason reason, string message = null) : base(message)
+        public TreeZeroException(object node, ExceptionReason reason, string message = null) : base(message ?? reason.ToString())
         {
             Node = node;
             Reason = reason;

@@ -4,12 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Description>Net Standard library to help manage a hierarchy of nodes.</Description>
     <Copyright>2019 Function Zero Ltd</Copyright>
-    <PackageProjectUrl></PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Keflon/FunctionZero.TreeZero</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Keflon/FunctionZero.TreeZero</RepositoryUrl>
     <PackageTags>net standard tree node manager graph dag acyclic</PackageTags>
-    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+    <PackageReleaseNotes>Improved error reporting if a node is added to the same parent more than once.</PackageReleaseNotes>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
