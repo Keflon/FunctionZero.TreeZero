@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace FunctionZero.TreeZero
 {
-    public abstract class Node<T> : INotifyPropertyChanged where T : Node<T>
+    public abstract class Node<T> : INode<T> where T : Node<T>
     {
         private T _parent;
 
@@ -81,10 +81,10 @@ namespace FunctionZero.TreeZero
                     _changeInProgress = true;
                     if (_oldParent != null)
                         _oldParent.Children.Remove((T)this);
-                    
+
                     if (Parent != null)
                         Parent.Children.Add((T)this);
-                    
+
                     _changeInProgress = false;
                 }
                 _oldParent = Parent;
@@ -106,7 +106,7 @@ namespace FunctionZero.TreeZero
                     {
                         if (newItem.Parent != null)
                         {
-                            if(newItem.Parent == this)
+                            if (newItem.Parent == this)
                                 throw new TreeZeroException(this, ExceptionReason.ChildAddedToSameParent);
 
                             newItem._changeInProgress = true;
@@ -142,7 +142,7 @@ namespace FunctionZero.TreeZero
         }
 
 
-        public bool IsChildOf(Node<T> item)
+        public bool IsChildOf(INode<T> item)
         {
             if (this.Parent == null)
                 return false;
@@ -150,7 +150,7 @@ namespace FunctionZero.TreeZero
                 return true;
             return this.Parent.IsChildOf(item);
         }
-        public bool IsAncestorOf(Node<T> item)
+        public bool IsAncestorOf(INode<T> item)
         {
             if (item.Parent == null)
                 return false;
@@ -177,7 +177,7 @@ namespace FunctionZero.TreeZero
         //    }
         //}
 
-        public static IEnumerable<Node<T>> AllChildren(Node<T> root, bool includeRoot = true)
+        public static IEnumerable<INode<T>> AllChildren(INode<T> root, bool includeRoot = true)
         {
             if (includeRoot)
                 yield return root;
