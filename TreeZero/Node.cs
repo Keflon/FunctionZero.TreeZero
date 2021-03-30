@@ -12,22 +12,38 @@ namespace FunctionZero.TreeZero
     {
         private T _parent;
 
+        //public Node(ObservableCollection<T> children = null)
+        //{
+        //    if (children != null)
+        //    {
+        //        Children = children;
+        //        foreach (var child in children)
+        //        {
+        //            if (child.Parent != null)
+        //                throw new TreeZeroException(this, ExceptionReason.CollectionItemAlreadyParented);
+        //            child._changeInProgress = true;
+        //            child.Parent = (T)this;
+        //            child._changeInProgress = false;
+        //        }
+        //    }
+        //    else
+        //        Children = new ObservableCollection<T>();
+
+        //    Children.CollectionChanged += Children_CollectionChanged;
+        //}
+
         public Node(ObservableCollection<T> children = null)
         {
-            if (children != null)
+            Children = children ?? new ObservableCollection<T>();
+
+            foreach (var child in Children)
             {
-                Children = children;
-                foreach (var child in children)
-                {
-                    if (child.Parent != null)
-                        throw new TreeZeroException(this, ExceptionReason.CollectionItemAlreadyParented);
-                    child._changeInProgress = true;
-                    child.Parent = (T)this;
-                    child._changeInProgress = false;
-                }
+                if (child.Parent != null)
+                    throw new TreeZeroException(this, ExceptionReason.CollectionItemAlreadyParented);
+                child._changeInProgress = true;
+                child.Parent = (T)this;
+                child._changeInProgress = false;
             }
-            else
-                Children = new ObservableCollection<T>();
 
             Children.CollectionChanged += Children_CollectionChanged;
         }
@@ -50,6 +66,12 @@ namespace FunctionZero.TreeZero
                 }
             }
         }
+
+
+        //public int NestLevel
+        //{
+        //    get => Parent?.NestLevel + 1 ?? 0;
+        //}
 
         public int NestLevel
         {

@@ -11,6 +11,9 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Version>1.0.1</Version>
+    <SignAssembly>false</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile>DataSafeKeyFile.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
